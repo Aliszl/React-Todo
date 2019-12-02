@@ -6,11 +6,13 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
+      // todoList: [],
       todoList: [
-        { id: "1", name: "sweeping", completed: false },
-        { id: "2", name: "mopping", completed: false },
-        { id: "3", name: "washing dishes", completed: false }
+        { id: "1", task: "sweeping", completed: false },
+        { id: "2", task: "mopping", completed: false },
+        { id: "3", task: "washing dishes", completed: false }
       ],
+
       todoValue: ""
     };
   }
@@ -21,15 +23,28 @@ class App extends React.Component {
   };
 
   handleSubmit = event => {
+    console.log(event);
     event.preventDefault();
-    console.log(`I was clicked`, event);
+    this.setState({
+      todoList: [
+        ...this.state.todoList,
+        {
+          task: this.state.todoValue,
+          id: Date.now(),
+          completed: false
+        }
+      ],
+      todoValue: ""
+    });
+    // console.log(this.state.todoList);
   };
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
 
   render() {
-    console.log(this.state.todoList);
+    // console.log(this.state.todoList);
+    // console.log(this.state.todoValue);
     return (
       <div>
         <h2>Todo List: MVP</h2>
@@ -38,7 +53,7 @@ class App extends React.Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
-        <TodoList />
+        <TodoList todoList={this.state.todoList} />
       </div>
     );
   }

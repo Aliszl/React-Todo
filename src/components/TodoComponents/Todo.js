@@ -13,6 +13,10 @@ export default class Todo extends React.Component {
     }
   };
   render() {
-    return <button>Clear Completed (from Todo)</button>;
+    return (
+      <div>
+        <h3>task: {this.props.todo.task}</h3>
+      </div>
+    );
   }
 }

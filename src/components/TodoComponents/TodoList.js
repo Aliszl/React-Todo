@@ -7,6 +7,13 @@ import Todo from "./Todo";
 export default class TodoList extends React.Component {
   render() {
     // map over array here.  Like with cards and conatiners
-    return <Todo />;
+
+    return (
+      <div>
+        {this.props.todoList.map(todo => {
+          return <Todo todo={todo} />;
+        })}
+      </div>
+    );
   }
 }
