@@ -38,6 +38,19 @@ class App extends React.Component {
     });
     // console.log(this.state.todoList);
   };
+  markComplete = id => {
+    // console.log('From App.js')
+    // console.log(id);
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      })
+    });
+  };
+
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
@@ -53,7 +66,10 @@ class App extends React.Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
-        <TodoList todoList={this.state.todoList} />
+        <TodoList
+          todoList={this.state.todoList}
+          markComplete={this.markComplete}
+        />
       </div>
     );
   }

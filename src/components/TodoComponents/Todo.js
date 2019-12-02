@@ -16,6 +16,7 @@ export default class Todo extends React.Component {
     return (
       <div>
         <h3>task: {this.props.todo.task}</h3>
+        <input type="checkbox" onChange={this.props.markComplete} />
       </div>
     );
   }
