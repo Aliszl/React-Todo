@@ -38,16 +38,23 @@ class App extends React.Component {
     });
     // console.log(this.state.todoList);
   };
-  markComplete = id => {
-    // console.log('From App.js')
-    // console.log(id);
+  markComplete = event => {
+    console.log(event);
+    event.preventDefault();
     this.setState({
-      todos: this.state.todos.map(todo => {
-        if (todo.id === id) {
+      todos: this.state.todoList.map(todo => {
+        if (todo.id === event) {
           todo.completed = !todo.completed;
         }
         return todo;
       })
+    });
+  };
+
+  delTodo = id => {
+    console.log(id);
+    this.setState({
+      todoList: [...this.state.todoList.filter(todo => todo.id !== id)]
     });
   };
 
@@ -56,7 +63,7 @@ class App extends React.Component {
   // this component is going to take care of state, and any change handlers you need to work with your state
 
   render() {
-    // console.log(this.state.todoList);
+    console.log(this.state);
     // console.log(this.state.todoValue);
     return (
       <div>
@@ -69,6 +76,7 @@ class App extends React.Component {
         <TodoList
           todoList={this.state.todoList}
           markComplete={this.markComplete}
+          delTodo={this.delTodo}
         />
       </div>
     );
