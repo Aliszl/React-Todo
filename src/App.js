@@ -39,13 +39,12 @@ class App extends React.Component {
     // console.log(this.state.todoList);
   };
   markComplete = event => {
-    console.log(event);
+    console.log(event.target);
     event.preventDefault();
     this.setState({
       todos: this.state.todoList.map(todo => {
-        if (todo.id === event) {
-          todo.completed = !todo.completed;
-        }
+        todo.completed = !todo.completed;
+
         return todo;
       })
     });
