@@ -15,6 +15,9 @@ class App extends React.Component {
 
       todoValue: ""
     };
+    // this.handleChange = this.handleChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.markComplete = this.markComplete.bind(this);
   }
   handleChange = event => {
     this.setState({
@@ -38,12 +41,13 @@ class App extends React.Component {
     });
     // console.log(this.state.todoList);
   };
-  markComplete = event => {
-    console.log(event.target);
-    event.preventDefault();
+  markComplete = id => {
+    console.log(id);
     this.setState({
-      todos: this.state.todoList.map(todo => {
-        todo.completed = !todo.completed;
+      todoList: this.state.todoList.map(todo => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed;
+        }
 
         return todo;
       })
@@ -66,13 +70,15 @@ class App extends React.Component {
     // console.log(this.state.todoValue);
     return (
       <div>
-        <h2>Todo List: MVP</h2>
+        <h2>Todo List: </h2>
         <TodoForm
+          key={this.props.id}
           todoValue={this.state.todoValue}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
         <TodoList
+          key={this.props.id}
           todoList={this.state.todoList}
           markComplete={this.markComplete}
           delTodo={this.delTodo}
